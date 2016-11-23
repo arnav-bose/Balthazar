@@ -1,10 +1,12 @@
 package com.example.arnav.balthazar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,14 @@ public class InnerDashboard extends AppCompatActivity {
         recyclerViewInnerDashboard.setAdapter(moviesAdapter);
 
         populateListInnerDashboard();
+
+        recyclerViewInnerDashboard.addOnItemTouchListener(new RecyclerViewItemClickListener(getApplicationContext(), new RecyclerViewItemClickListener.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view, int position){
+                Intent intentDetail = new Intent(InnerDashboard.this, DetailActivity.class);
+                startActivity(intentDetail);
+            }
+        }));
     }
 
     private void populateListInnerDashboard() {
